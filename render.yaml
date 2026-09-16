@@ -13,6 +13,8 @@ services:
       mountPath: /data       # solo guarda los tokens CIFRADOS de quien active el 24/7
       sizeGB: 1
     envVars:
+      - key: PYTHON_VERSION  # la misma con la que está probado: sin esto Render
+        value: "3.12.10"     # usa la suya del día y el build puede romperse
       - key: DATA_DIR
         value: /data
       - key: CLAVE_TOKENS    # clave con la que se cifran los tokens en reposo
