@@ -6,7 +6,7 @@ Conecta tu cuenta de Meta y te dice qué creativos están funcionando, **por qu�
 están funcionando, cuáles hay que apagar y **qué tienes que producir esta
 semana** — con el nombre exacto de cada variante.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ANTTONNAVAS/radar-creativos)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ESTRUCTURAECOM/radar-creativos)
 
 ---
 
