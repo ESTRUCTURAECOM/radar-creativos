@@ -113,6 +113,27 @@ Cada vuelta el sistema sabe un poco más.
 | `nocturno.py` | La ronda de cada madrugada |
 | `store.py` | Lo único que se guarda, y cifrado |
 | `templates/index.html` | La interfaz y la guía |
+| `skill/` | La skill para tu chat de IA: que vaya sola a por tus datos |
+
+---
+
+## La skill del chat (opcional, pero es lo que cierra el loop)
+
+Copia la carpeta `skill/` a la de skills de tu chat con el nombre
+`radar-creativos`:
+
+- Windows: `%USERPROFILE%\.claude\skills\radar-creativos`
+- Mac: `~/.claude/skills/radar-creativos`
+
+Después, en tu radar → pestaña **El Agente** → **⚙️ Configurar la skill**: te
+descarga un `cuenta.json` con tu URL, tu token y tu cuenta ya rellenados. Lo
+mueves a esa carpeta y listo — no hay que escribir nada.
+
+A partir de ahí basta con pedirle a tu IA los creativos de la semana: va sola a
+buscar tus números antes de escribir nada.
+
+> Ese `cuenta.json` lleva tu token dentro. No lo compartas ni lo subas a
+> ningún sitio (ya está excluido del repositorio).
 
 ---
 

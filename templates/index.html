@@ -298,6 +298,8 @@
     </select>
     <button class="bigcopy" id="btnBrief" onclick="descargarBrief()">📥 Generar brief de la semana</button>
     <button class="bigcopy" id="btnCopiar" onclick="copiarTodo()">📋 Copiar para el chat de creativos</button>
+    <button class="bigcopy" id="btnSkill" onclick="configurarSkill()"
+            style="background:var(--card);color:var(--v);border:1px solid var(--v)">⚙️ Configurar la skill</button>
   </div>
   <div id="salida"><div class="load">Leyendo tu cuenta…</div></div>
   <div id="guiaPanel"></div>
@@ -334,6 +336,7 @@ function ver(v){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
   document.getElementById('btnCopiar').style.display = v==='agente'?'':'none';
   document.getElementById('btnBrief').style.display = v==='agente'?'':'none';
+  document.getElementById('btnSkill').style.display = v==='agente'?'':'none';
   CONJ=null; CONJ_FICHA=null;
   if(v==='tabla'){ if(!TABLA) { cargarTabla('campaign',null,''); return; } }
   if(v==='bib'){ CREATIVO=null; if(!BIB){ cargarBiblioteca(); return; } }
@@ -1037,6 +1040,24 @@ async function descargarBrief(){
   setTimeout(()=>b.textContent=o,3200);
 }
 
+/* ---------- configurar la skill del chat ----------
+   Baja el cuenta.json ya relleno con la URL de este radar, el token y la
+   cuenta. Así nadie tiene que escribirlo a mano ni equivocarse copiando. */
+function configurarSkill(){
+  const c=cfg(); if(!c) return;
+  const b=document.getElementById('btnSkill'), o=b.textContent;
+  const conf={url:location.origin, token:c.token, cuenta:c.cuenta,
+              codigo:c.codigo||'', rango:document.getElementById('selRango').value};
+  const url=URL.createObjectURL(new Blob([JSON.stringify(conf,null,2)],
+                                {type:'application/json'}));
+  const a=document.createElement('a');
+  a.href=url; a.download='cuenta.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),4000);
+  b.textContent='✓ Descargado — muévelo a la carpeta de la skill';
+  setTimeout(()=>b.textContent=o,4000);
+}
+
 /* ---------- guía ---------- */
 function guiaHTML(){return `
 <details class="guia">
@@ -1086,6 +1107,9 @@ function guiaHTML(){return `
   <p>Arrastra ese archivo a tu chat de creativos (o dile «lee el brief que tengo en Descargas») y
   te escribe los guiones de la semana. Tú revisas su propuesta antes de producir: manda siempre tu
   criterio.</p>
+  <p>Y si quieres quitarte hasta ese paso: pulsa <strong>⚙️ Configurar la skill</strong>, mueve el
+  <code>cuenta.json</code> que se descarga a la carpeta de la skill y a partir de ahí basta con
+  decirle a tu IA «hazme los creativos de esta semana» — irá sola a buscar tus datos.</p>
 
   <h4>5. Cómo conseguir el token de Meta</h4>
   <ol>
